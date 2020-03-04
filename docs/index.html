@@ -5,18 +5,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        p,
+        h1 {
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
     <h1>By Anderson Lopes</h1>
 
+    <hr>
     <p>Latitude: <span id="latitude"></span></p>
     <p>longitude: <span id="longitude"></span></p>
+    <iframe id="mapa" styme src="" width="600" height="450" frameborder="0" allowfullscreen="" style="padding: 10px;border: 1px solid rgba(0, 0, 0, .5);display: block;margin: auto;box-shadow: 0px 4px 10px 0px #000;min-width: calc(90% - 20px);min-height: 50vh;"></iframe>
 
     <script>
         navigator.geolocation.watchPosition(function(position) {
+            var latitude = position.coords.latitude;
+            var longitude = position.coords.longitude;
+
             document.getElementById('latitude').innerText = position.coords.latitude
             document.getElementById('longitude').innerText = position.coords.longitude
+
+            var src = `https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8696.350665852651!2d${longitude}!3d${latitude}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce5a2dbdbafdbd%3A0x13028b658caece6a!2sCine%20Segall!5e0!3m2!1spt-BR!2sbr!4v1583343235991!5m2!1spt-BR!2sbr`
+            document.getElementById('mapa').src = src
         });
     </script>
 </body>
